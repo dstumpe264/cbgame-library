@@ -1,5 +1,5 @@
 {
-  "name": "14-challenge-mvc",
+  "name": "cbgame-library",
   "version": "1.0.0",
   "description": "* MVC  * node * mysql * handlebars * REST * bcrypt,  * eslint * prettier, and other things",
   "main": "server.js",
@@ -12,9 +12,10 @@
     "node": "16.x"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Stumpe, Ethan, Will, Serge",
+  "license": "MIT",
   "dependencies": {
+    "bcrypt": "^5.1.0",
     "connect-session-sequelize": "^7.1.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
@@ -23,7 +24,6 @@
     "mysql2": "^3.1.0",
     "sequelize": "^6.28.0"
   },
-  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/dstumpe264/proj2-team2.git"

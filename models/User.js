@@ -1,10 +1,15 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
+const bcrypt = require('bcrypt');
 
 // Create a new Sequelize model
-class Example extends Model {}
+class User extends Model {
+  checkPassword(loginPW) {
+    return bcrypt.compareSync(loginPW, this.password);
+}
+}
 
-Example.init(
+User.init(
   // Define fields/columns on model
   // An `id` is automatically created by Sequelize, though best practice would be to define the primary key ourselves
   {
@@ -22,14 +27,24 @@ Example.init(
     }
   },
   {
+    hooks: {
+      beforeCreate: async (newUserData) => {
+        newUserData.password = await bcrypt.hash(newUserData.password, 10);
+        return newUserData;
+      },
+      beforeUpdate: async (updatedUserData) => {
+        updatedUserData.password = await bcrypt.hash(updatedUserData.password, 10);
+        return updatedUserData;
+      },
+    },
     // Link to database connection
     sequelize,
     // Set to false to remove `created_at` and `updated_at` fields
     freezeTableName: true,
     timestamps: false,
     underscored: true,
-    modelName: 'example'
+    modelName: 'user'
   }
 );
 
-module.exports = Example;
+module.exports = User;
