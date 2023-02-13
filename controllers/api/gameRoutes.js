@@ -17,7 +17,7 @@ router.get('/:id', async (req, res) => {
     const gameData = await Game.findByPk(req.params.id);
 
     if (!gameData) {
-      res.status(404).json({ message: 'No library card found with that id!' });
+      res.status(404).json({ message: 'No game found with that id!' });
       return;
     }
 
